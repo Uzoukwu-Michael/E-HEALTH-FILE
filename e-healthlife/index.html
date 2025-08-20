@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover" />
+  <meta name="description" content="E-HEALTH-FILE: Digital health records and compassionate home-based care. Partnering with hospitals and communities to streamline healthcare." />
+  <meta name="theme-color" content="#0ea5e9" />
+  <title>E-HEALTH-FILE | Digital Health Records & Home Care</title>
+
+  <!-- Tailwind CSS (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Tailwind config for fluid typography and container
+    tailwind.config = {
+      theme: {
+        container: { center: true, padding: { DEFAULT: '1rem', md: '1.5rem', lg: '2rem' } },
+        extend: {
+          fontFamily: {
+            display: ['Inter', 'ui-sans-serif', 'system-ui', 'Segoe UI', 'Helvetica Neue', 'Arial', 'Noto Sans', 'sans-serif'],
+            body: ['Inter', 'ui-sans-serif', 'system-ui', 'Segoe UI', 'Helvetica Neue', 'Arial', 'Noto Sans', 'sans-serif']
+          },
+          animation: {
+            'float-slow': 'float 12s ease-in-out infinite',
+            'float': 'float 8s ease-in-out infinite',
+            'pulse-soft': 'pulseSoft 6s ease-in-out infinite',
+            'spin-slow': 'spin 12s linear infinite'
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-16px)' }
+            },
+            pulseSoft: {
+              '0%, 100%': { opacity: 0.5 },
+              '50%': { opacity: 0.9 }
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" integrity="sha512-wVwVf7r3wV0b/RG0yq8Jk7l1PPfQn9qzq1qkH7qkJ8bP6hXzS6k3kzQp1FzF2c2qQmM5u7v3bNShXhFi1S3r3w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Swiper (Testimonials slider) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
+  <!-- AOS (Scroll animations) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+  <link rel="stylesheet" href="style.css">
+
+</head>
+<body class="antialiased">
+  <div class="noise" aria-hidden="true"></div>
+
+  <a href="#main" class="skip-link ring-accent">Skip to content</a>
+
+  <!-- Header / Navigation -->
+  <header class="sticky top-0 z-40">
+    <div class="container">
+      <nav class="glass elev mt-4 px-4 py-3 md:py-4 rounded-2xl flex items-center justify-between">
+        <a href="#" class="flex items-center gap-3 ring-accent focus-visible:outline-none" aria-label="E-HEALTH-FILE Home">
+          <span class="inline-flex h-10 w-10 items-center justify-center rounded-xl"
+                style="background: radial-gradient(65% 65% at 30% 30%, rgba(34,211,238,0.25), transparent), radial-gradient(65% 65% at 70% 70%, rgba(14,165,233,0.35), transparent), var(--card); border:1px solid var(--border); box-shadow: inset 4px 4px 16px var(--shadow-hi), inset -8px -8px 16px var(--shadow-lo);">
+            <i class="fa-solid fa-heart-pulse text-lg" style="color: var(--accent)"></i>
+          </span>
+          <div class="leading-tight">
+            <span class="block text-fg font-extrabold text-lg tracking-tight">E-HEALTH-FILE</span>
+            <span class="block text-xs text-muted -mt-0.5">Health Is Wealth</span>
+          </div>
+        </a>
+
+        <button id="navToggle" aria-expanded="false" aria-controls="primaryNav" class="md:hidden btn btn-ghost ring-accent">
+          <i class="fa-solid fa-bars text-xl"></i>
+          <span class="sr-only">Toggle navigation</span>
+        </button>
+
+        <ul id="primaryNav" class="hidden md:flex items-center gap-2">
+          <li><a href="#home" class="btn btn-ghost text-sm ring-accent">Home</a></li>
+          <li><a href="#about" class="btn btn-ghost text-sm ring-accent">About Us</a></li>
+          <li><a href="#services" class="btn btn-ghost text-sm ring-accent">What We Offer</a></li>
+          <li><a href="#stories" class="btn btn-ghost text-sm ring-accent">Patient Stories</a></li>
+          <li><a href="#team" class="btn btn-ghost text-sm ring-accent">Team</a></li>
+          <li><a href="#contact" class="btn btn-ghost text-sm ring-accent">Contact Us</a></li>
+          <li class="ml-2">
+            <!-- <button id="themeToggle" class="btn btn-ghost ring-accent" aria-pressed="false" aria-label="Toggle theme">
+              <i class="fa-solid fa-moon text-lg" aria-hidden="true"></i>
+              <span class="sr-only">Toggle dark mode</span>
+            </button> -->
+          </li>
+          <li class="ml-2 hidden md:block">
+            <a href="#appointment" class="btn btn-primary">Book Appointment <i class="fa-solid fa-arrow-right"></i></a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Mobile drawer -->
+      <div id="mobileNav" class="hidden md:hidden mt-2 glass elev rounded-2xl p-3" role="dialog" aria-modal="true" aria-labelledby="mobileNavHeading">
+        <h2 id="mobileNavHeading" class="sr-only">Mobile Navigation</h2>
+        <div class="grid gap-2">
+          <a href="#home" class="btn btn-ghost justify-start">Home</a>
+          <a href="#about" class="btn btn-ghost justify-start">About Us</a>
+          <a href="#services" class="btn btn-ghost justify-start">What We Offer</a>
+          <a href="#stories" class="btn btn-ghost justify-start">Patient Stories</a>
+          <a href="#team" class="btn btn-ghost justify-start">Team</a>
+          <a href="#contact" class="btn btn-ghost justify-start">Contact Us</a>
+          <a href="#appointment" class="btn btn-primary justify-center mt-1"><i class="fa-solid fa-calendar-check mr-2"></i> Book Appointment</a>
+          <button id="themeToggleMobile" class="btn btn-ghost justify-center mt-1" aria-pressed="false" aria-label="Toggle theme">
+            <!-- <i class="fa-solid fa-moon text-lg"></i> Dark Mode -->
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero -->
+    <section id="home" class="relative">
+      <div aria-hidden="true" class="pointer-events-none absolute inset-0 overflow-hidden">
+        <div class="absolute -right-24 -top-24 w-80 h-80 rounded-full blur-3xl opacity-30"
+             style="background: radial-gradient(closest-side, var(--grad-1), transparent)"></div>
+        <div class="absolute -left-24 top-32 w-96 h-96 rounded-full blur-3xl opacity-25"
+             style="background: radial-gradient(closest-side, var(--grad-3), transparent)"></div>
+      </div>
+
+      <div class="container pt-8 md:pt-14 lg:pt-20 pb-10 md:pb-14">
+        <div class="grid lg:grid-cols-2 items-center gap-8 md:gap-12">
+          <div data-aos="fade-right">
+            <span class="chip mb-4"><i class="fa-solid fa-shield-heart text-sky-500"></i> HEALTH IS WEALTH</span>
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight tracking-tight">
+              Digital Health Records<br />
+              <span class="title-gradient">and Professional Home Care</span>
+            </h1>
+            <p class="text-muted mt-4 md:text-lg max-w-prose">
+              E-HEALTH-FILE, a leading Nigerian health-tech company, partners with hospitals and communities to digitize patient records and provide compassionate home-based care for the elderly, disabled, and chronically ill.
+            </p>
+
+            <div class="mt-6 flex flex-wrap items-center gap-3">
+              <a href="#appointment" class="btn btn-primary">
+                <i class="fa-solid fa-stethoscope"></i> Get Started
+              </a>
+            </div>
+
+            <div class="mt-8 flex flex-wrap gap-4">
+              <div class="glass p-4 rounded-xl flex items-center gap-4">
+                <div class="h-12 w-12 rounded-lg flex items-center justify-center"
+                     style="background: var(--card); border:1px solid var(--border)">
+                  <i class="fa-solid fa-users text-2xl" style="color: var(--accent)"></i>
+                </div>
+                <div>
+                  <p class="text-2xl font-extrabold"><span class="count" data-target="500">0</span>+</p>
+                  <p class="text-muted text-sm -mt-1">Happy Patients</p>
+                </div>
+              </div>
+              <div class="glass p-4 rounded-xl flex items-center gap-4">
+                <div class="h-12 w-12 rounded-lg flex items-center justify-center"
+                     style="background: var(--card); border:1px solid var(--border)">
+                  <i class="fa-solid fa-calendar-check text-2xl text-emerald-500"></i>
+                </div>
+                <div>
+                  <p class="text-2xl font-extrabold"><span class="count" data-target="10">0</span>+</p>
+                  <p class="text-muted text-sm -mt-1">Trusted Years</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div data-aos="fade-left">
+            <div class="relative">
+              <div class="absolute -inset-1 rounded-3xl opacity-70 blur-2xl"
+                   style="background: conic-gradient(from 180deg at 50% 50%, var(--grad-1), var(--grad-2), var(--grad-3), var(--grad-1));"></div>
+              <div class="neu relative rounded-3xl p-2">
+                <div class="rounded-2xl overflow-hidden ratio-16-9">
+                  <img data-src="/image/doctor with facemask.jpg" alt="Healthcare professional managing digital records" class="w-full h-full object-cover lazy" />
+                </div>
+                <div class="grid grid-cols-3 gap-2 mt-2">
+                  <img data-src="/image/drfm.png" alt="Home care visit" class="lazy rounded-xl h-28 w-full object-cover" />
+                  <img data-src="/image/DRBEN.jpg" alt="Patient consultation" class="lazy rounded-xl h-28 w-full object-cover" />
+                  <img data-src="/image/istockphoto-1461330630-612x612.webp" alt="Community health outreach" class="lazy rounded-xl h-28 w-full object-cover" />
+                </div>
+              </div>
+
+              <div class="absolute -bottom-6 -left-4 glass px-4 py-3 rounded-2xl shadow-lg flex items-center gap-3 animate-float">
+                <i class="fa-solid fa-lock text-emerald-500"></i>
+                <div>
+                  <p class="text-sm font-semibold">Secure Records</p>
+                  <p class="text-xs text-muted -mt-1">HIPAA-like best practices</p>
+                </div>
+              </div>
+              <div class="absolute -top-6 -right-4 glass px-4 py-3 rounded-2xl shadow-lg flex items-center gap-3 animate-float-slow">
+                <i class="fa-solid fa-house-medical text-sky-500"></i>
+                <div>
+                  <p class="text-sm font-semibold">At-Home Care</p>
+                  <p class="text-xs text-muted -mt-1">Compassionate support</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mini features -->
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-12">
+          <div class="glass p-5 rounded-2xl" data-aos="fade-up" data-aos-delay="0">
+            <div class="flex items-center gap-3">
+              <span class="h-10 w-10 rounded-xl flex items-center justify-center"
+                    style="background: var(--card); border:1px solid var(--border)">
+                <i class="fa-solid fa-file-shield text-sky-500"></i>
+              </span>
+              <div>
+                <p class="font-bold">File Documentation</p>
+                <p class="text-xs text-muted -mt-0.5">Securely digitize and manage your patient records in one place.</p>
+              </div>
+            </div>
+          </div>
+          <div class="glass p-5 rounded-2xl" data-aos="fade-up" data-aos-delay="100">
+            <div class="flex items-center gap-3">
+              <span class="h-10 w-10 rounded-xl flex items-center justify-center"
+                    style="background: var(--card); border:1px solid var(--border)">
+                <i class="fa-solid fa-user-doctor text-emerald-500"></i>
+              </span>
+              <div>
+                <p class="font-bold">Free Consultation</p>
+                <p class="text-xs text-muted -mt-0.5">Meet our experts for personalized care solutions.</p>
+              </div>
+            </div>
+          </div>
+          <div class="glass p-5 rounded-2xl" data-aos="fade-up" data-aos-delay="200">
+            <div class="flex items-center gap-3">
+              <span class="h-10 w-10 rounded-xl flex items-center justify-center"
+                    style="background: var(--card); border:1px solid var(--border)">
+                <i class="fa-solid fa-gauge-high text-purple-500"></i>
+              </span>
+              <div>
+                <p class="font-bold">Fast Access</p>
+                <p class="text-xs text-muted -mt-0.5">Data available anytime, anywhere for better decisions.</p>
+              </div>
+            </div>
+          </div>
+          <div class="glass p-5 rounded-2xl" data-aos="fade-up" data-aos-delay="300">
+            <div class="flex items-center gap-3">
+              <span class="h-10 w-10 rounded-xl flex items-center justify-center"
+                    style="background: var(--card); border:1px solid var(--border)">
+                <i class="fa-solid fa-shield-halved text-rose-500"></i>
+              </span>
+              <div>
+                <p class="font-bold">Trusted & Secure</p>
+                <p class="text-xs text-muted -mt-0.5">Privacy-first design with encryption in transit.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="py-14 md:py-20">
+      <div class="container">
+        <div class="grid lg:grid-cols-2 gap-10 items-start">
+          <div data-aos="fade-right">
+            <p class="chip"><i class="fa-solid fa-circle-info text-sky-500"></i> ABOUT US</p>
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black mt-3">Digitizing Health Records</h2>
+            <p class="text-muted mt-3 max-w-prose">
+              Securely digitize, store, and access patient records for faster, smarter healthcare decisions.
+            </p>
+
+            <div class="mt-6 space-y-4">
+              <div class="glass p-5 rounded-xl">
+                <h3 class="font-bold text-lg accent-bar mb-2">The Problem</h3>
+                <ul class="list-none space-y-2">
+                  <li class="flex items-start gap-3">
+                    <i class="fa-solid fa-xmark text-rose-500 mt-1"></i>
+                    <span class="text-muted">Outdated analog systems lead to lost files, delayed treatment, and increased preventable deaths.</span>
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <i class="fa-solid fa-xmark text-rose-500 mt-1"></i>
+                    <span class="text-muted">Lack of accessible, personalized home care for elderly, disabled, and chronically ill individuals.</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="glass p-5 rounded-xl">
+                <h3 class="font-bold text-lg accent-bar mb-2">Our Solution</h3>
+                <p class="text-muted">
+                  A centralized digital health file system storing medical history, blood group, allergies, medications, treatments, and doctors' notes—accessible anytime, anywhere.
+                </p>
+              </div>
+              <div class="glass p-5 rounded-xl">
+                <h3 class="font-bold text-lg accent-bar mb-2">Our Vision</h3>
+                <p class="text-muted">
+                  Build a multinational company transforming African healthcare by digitizing health management and delivering compassionate home care into every home.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="grid gap-4" data-aos="fade-left">
+            <div class="glass rounded-2xl p-4">
+              <div class="flex items-center gap-3">
+                <span class="h-12 w-12 rounded-xl flex items-center justify-center"
+                      style="background: var(--card); border:1px solid var(--border)">
+                  <i class="fa-solid fa-bolt text-amber-500 text-xl"></i>
+                </span>
+                <div>
+                  <p class="font-bold">10+ Trusted Years of Expert Healthcare</p>
+                  <p class="text-muted text-sm -mt-1">Delivering fast, secure, and compassionate healthcare.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div class="neu p-4 rounded-2xl">
+                <div class="ratio-16-9">
+                  <img data-src="/image/ServiceImg (4).jpg" alt="Nurse providing home-based care" class="lazy object-cover w-full h-full" />
+                </div>
+                <p class="text-sm text-muted mt-3">Compassionate at-home care</p>
+              </div>
+              <div class="neu p-4 rounded-2xl">
+                <div class="ratio-16-9">
+                  <img data-src="/image/ServiceImg (1).jpg" alt="Doctor reviewing digital patient records" class="lazy object-cover w-full h-full" />
+                </div>
+                <p class="text-sm text-muted mt-3">Secure digital records</p>
+              </div>
+            </div>
+
+            <div class="glass rounded-2xl p-4">
+              <div class="flex items-center justify-between">
+                <div>
+                  <p class="font-bold">Mrs. Obianuju Solomon</p>
+                  <p class="text-muted text-sm -mt-1">Managing Director</p>
+                </div>
+                <div class="h-12 w-12 rounded-full overflow-hidden border-soft">
+                  <img data-src="/image/teamDp1.jpg" alt="Managing Director portrait" class="lazy h-full w-full object-cover" />
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="py-14 md:py-20">
+      <div class="container">
+        <div class="flex items-start justify-between gap-6 flex-wrap">
+          <div>
+            <p class="chip"><i class="fa-solid fa-briefcase-medical text-sky-500"></i> OUR SERVICES</p>
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black mt-3">At-Home Care Services</h2>
+            <p class="text-muted max-w-prose mt-2">Receive compassionate, professional healthcare at home, including support for the elderly and chronically ill.</p>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5 mt-8">
+          <div class="glass p-6 rounded-2xl elev" data-aos="zoom-in">
+            <div class="flex items-center justify-between">
+              <span class="chip"><i class="fa-solid fa-0"></i>1</span>
+              <i class="fa-solid fa-database text-2xl text-sky-500"></i>
+            </div>
+            <h3 class="font-bold text-lg mt-4">Digital Patient Records</h3>
+            <p class="text-muted text-sm mt-1">Secure and easy-to-use platform to digitize and manage patient health records for fast and reliable access.</p>
+          </div>
+
+          <div class="glass p-6 rounded-2xl elev" data-aos="zoom-in" data-aos-delay="100">
+            <div class="flex items-center justify-between">
+              <span class="chip"><i class="fa-solid fa-0"></i>2</span>
+              <i class="fa-solid fa-house-medical-circle-check text-2xl text-emerald-500"></i>
+            </div>
+            <h3 class="font-bold text-lg mt-4">Home-Based Care Services</h3>
+            <p class="text-muted text-sm mt-1">Compassionate in-home care, including Community Home Support and Personal HealthCare Assistance.</p>
+          </div>
+
+          <div class="glass p-6 rounded-2xl elev" data-aos="zoom-in" data-aos-delay="200">
+            <div class="flex items-center justify-between">
+              <span class="chip"><i class="fa-solid fa-0"></i>3</span>
+              <i class="fa-solid fa-handshake-angle text-2xl text-indigo-500"></i>
+            </div>
+            <h3 class="font-bold text-lg mt-4">Partnerships</h3>
+            <p class="text-muted text-sm mt-1">We collaborate with institutions to streamline delivery and improve outcomes through integrated systems.</p>
+          </div>
+
+          <div class="glass p-6 rounded-2xl elev" data-aos="zoom-in" data-aos-delay="300">
+            <div class="flex items-center justify-between">
+              <span class="chip"><i class="fa-solid fa-0"></i>4</span>
+              <i class="fa-solid fa-people-roof text-2xl text-pink-500"></i>
+            </div>
+            <h3 class="font-bold text-lg mt-4">Community Health Support</h3>
+            <p class="text-muted text-sm mt-1">Working within local communities to deliver essential services and ensure access to quality care.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Patient Stories -->
+    <section id="stories" class="py-14 md:py-20">
+      <div class="container">
+        <div class="text-center max-w-2xl mx-auto">
+          <p class="chip inline-flex"><i class="fa-solid fa-comments text-sky-500"></i> PATIENTS STORIES</p>
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black mt-3">What Our Happy Patients Are Saying</h2>
+          <p class="text-muted mt-2">Our patients’ stories reflect the trust, satisfaction, and lasting relationships we build by consistently delivering outstanding results and experiences.</p>
+        </div>
+
+        <div class="mt-8">
+          <div class="swiper glass rounded-2xl p-6" id="testimonialSwiper" aria-label="Testimonials carousel">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="grid md:grid-cols-[auto,1fr] gap-4 items-start">
+                  <img data-src="/image/testFace (1).jpg" alt="Edward A." class="lazy h-16 w-16 rounded-full object-cover border-soft" />
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <p class="font-bold">Edward .A</p><span class="text-xs chip">Patient</span>
+                    </div>
+                    <p class="text-muted mt-2">E-HEALTH-FILE made it so easy to manage my family's health records. Now I have everything secure in one place, which gives me peace of mind when we visit different specialists. The system is so simple to use.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="swiper-slide">
+                <div class="grid md:grid-cols-[auto,1fr] gap-4 items-start">
+                  <img data-src="/image/anderson test.webp" alt="Anderson E." class="lazy h-16 w-16 rounded-full object-cover border-soft" />
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <p class="font-bold">Anderson .E.</p><span class="text-xs chip">Patient</span>
+                    </div>
+                    <p class="text-muted mt-2">The home care my mother receives from E-HEALTH-FILE is exceptional. The caregivers are compassionate and professional. It is a huge relief knowing she is in good hands, and she is much more comfortable.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="swiper-slide">
+                <div class="grid md:grid-cols-[auto,1fr] gap-4 items-start">
+                  <img data-src="/image/ServiceImg (3).jpg" alt="Patrick K." class="lazy h-16 w-16 rounded-full object-cover border-soft" />
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <p class="font-bold">Patrick .K</p><span class="text-xs chip">Patient</span>
+                    </div>
+                    <p class="text-muted mt-2">From the first call, the team at E-HEALTH-FILE was incredibly understanding and supportive. They truly care about the patient. Their service for my disabled brother has been a lifesaver for our family.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="swiper-slide">
+                <div class="grid md:grid-cols-[auto,1fr] gap-4 items-start">
+                  <img data-src="/image/istockphoto-.webp" alt="Mark (Staff)" class="lazy h-16 w-16 rounded-full object-cover border-soft" />
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <p class="font-bold">Mark</p><span class="text-xs chip">Staff</span>
+                    </div>
+                    <p class="text-muted mt-2">Our hospital partnered with E-HEALTH-FILE to digitize our patient files, and the process has been seamless. It's not only faster but also more secure. This is a crucial step forward for healthcare in Nigeria.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="swiper-slide">
+                <div class="grid md:grid-cols-[auto,1fr] gap-4 items-start">
+                  <img data-src="/image/ServiceImg (4).jpg" alt="Ben O." class="lazy h-16 w-16 rounded-full object-cover border-soft" />
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <p class="font-bold">Ben O.</p><span class="text-xs chip">Patient</span>
+                    </div>
+                    <p class="text-muted mt-2">I can't thank E-HEALTH-FILE enough. They’ve completely changed how we handle my father's chronic illness. The combination of secure digital files and personalized home care has made a world of difference. Highly recommend.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between mt-6">
+              <div class="swiper-pagination"></div>
+              <div class="flex gap-2">
+                <button class="btn btn-ghost swiper-button-prev" aria-label="Previous testimonial"><i class="fa-solid fa-arrow-left"></i></button>
+                <button class="btn btn-ghost swiper-button-next" aria-label="Next testimonial"><i class="fa-solid fa-arrow-right"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Team -->
+    <section id="team" class="py-14 md:py-20">
+      <div class="container">
+        <div class="text-center max-w-2xl mx-auto">
+          <p class="chip inline-flex"><i class="fa-solid fa-people-group text-sky-500"></i> OUR EXPERTS</p>
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black mt-3">Meet Our Management Team</h2>
+          <p class="text-muted mt-2">Our caring team treats every patient like family, offering gentle support, expert guidance, and dedicated attention to your unique health needs.</p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+          <div class="glass rounded-2xl p-5 text-center" data-aos="fade-up">
+            <div class="mx-auto h-28 w-28 rounded-full overflow-hidden border-soft">
+              <img data-src="/image/teamDp1.jpg" alt="Mrs. Obianuju Solomon - Managing Director" class="lazy h-full w-full object-cover" />
+            </div>
+            <h3 class="font-bold mt-3">Mrs. Obianuju Solomon</h3>
+            <p class="text-muted text-sm -mt-1">Managing Director</p>
+          </div>
+
+          <div class="glass rounded-2xl p-5 text-center" data-aos="fade-up" data-aos-delay="100">
+            <div class="mx-auto h-28 w-28 rounded-full overflow-hidden border-soft">
+              <img data-src="/image/teamDp2.jpg" alt="Mr. Jochim - Care Assistant" class="lazy h-full w-full object-cover" />
+            </div>
+            <h3 class="font-bold mt-3">Mr. Jochim</h3>
+            <p class="text-muted text-sm -mt-1">Care Assistant</p>
+          </div>
+
+          <div class="glass rounded-2xl p-5 text-center" data-aos="fade-up" data-aos-delay="200">
+            <div class="mx-auto h-28 w-28 rounded-full overflow-hidden border-soft">
+              <img data-src="/image/white doc.webp" alt="Senior Medical Advisor" class="lazy h-full w-full object-cover" />
+            </div>
+            <h3 class="font-bold mt-3">Stephen Anderson</h3>
+            <p class="text-muted text-sm -mt-1">Clinical Oversight</p>
+          </div>
+        </div>
+
+        <div class="text-center mt-8">
+          <a href="#appointment" class="btn btn-primary">Get Started <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Appointment / Contact CTA -->
+    <section id="appointment" class="py-14 md:py-20">
+      <div class="container">
+        <div class="grid lg:grid-cols-2 gap-8 items-start">
+          <div data-aos="fade-right">
+            <p class="chip"><i class="fa-solid fa-phone text-sky-500"></i> GET IN TOUCH</p>
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black mt-3">Book An Appointment</h2>
+            <p class="text-muted mt-2">Call Us: <a href="tel:+2349000000000" class="font-semibold underline decoration-dotted">+2349000000000</a></p>
+            <p class="text-muted">Mail Us: <a href="mailto:e-heath@mail.com" class="font-semibold underline decoration-dotted">e-heath@mail.com</a></p>
+
+            <div class="neu rounded-2xl p-4 mt-6">
+              <div class="ratio-16-9">
+                <img data-src="/image/ServiceImg (1).jpg" alt="Professional caregiver assisting patient at home" class="lazy object-cover w-full h-full" />
+              </div>
+              <p class="text-sm text-muted mt-3">We provide compassionate, professional home-based care.</p>
+            </div>
+          </div>
+
+          <div data-aos="fade-left">
+            <form id="bookingForm" action="send_mail.php" method="POST" class="glass rounded-2xl p-6 grid gap-4" novalidate aria-describedby="formNote">
+              <p id="formNote" class="text-xs text-muted -mt-2">Fields marked with * are required.</p>
+
+              <div class="grid sm:grid-cols-2 gap-4">
+                <label class="grid gap-1">
+                  <span class="text-sm font-semibold">Full name*</span>
+                  <input type="text" name="name" required autocomplete="name" placeholder="Your full name"
+                         class="w-full px-3 py-2 rounded-lg border-soft bg-card text-fg ring-accent" />
+                </label>
+                <label class="grid gap-1">
+                  <span class="text-sm font-semibold">Email*</span>
+                  <input type="email" name="email" required autocomplete="email" placeholder="you@example.com"
+                         class="w-full px-3 py-2 rounded-lg border-soft bg-card text-fg ring-accent" />
+                </label>
+              </div>
+
+              <div class="grid sm:grid-cols-2 gap-4">
+                <label class="grid gap-1">
+                  <span class="text-sm font-semibold">Phone*</span>
+                  <input type="tel" name="phone" required inputmode="tel" pattern="^[0-9+\-\s()]{7,}$" placeholder="+234 800 000 0000"
+                         class="w-full px-3 py-2 rounded-lg border-soft bg-card text-fg ring-accent" />
+                </label>
+                <div class="grid grid-cols-2 gap-4">
+                  <label class="grid gap-1">
+                    <span class="text-sm font-semibold">Date*</span>
+                    <input type="date" name="date" required class="w-full px-3 py-2 rounded-lg border-soft bg-card text-fg ring-accent" />
+                  </label>
+                  <label class="grid gap-1">
+                    <span class="text-sm font-semibold">Time*</span>
+                    <input type="time" name="time" required class="w-full px-3 py-2 rounded-lg border-soft bg-card text-fg ring-accent" />
+                  </label>
+                </div>
+              </div>
+
+              <label class="grid gap-1">
+                <span class="text-sm font-semibold">Select Service*</span>
+                <select name="service" required class="w-full px-3 py-2 rounded-lg border-soft bg-card text-fg ring-accent">
+                  <option value="">Select Services</option>
+                  <option value="records">Digital Patient Records</option>
+                  <option value="homecare">Home-Based Care</option>
+                  <option value="partnerships">Institutional Partnerships</option>
+                  <option value="community">Community Health Support</option>
+                </select>
+              </label>
+
+              <label class="grid gap-1">
+                <span class="text-sm font-semibold">Send a Message</span>
+                <textarea name="message" rows="4" placeholder="How can we help you?"
+                          class="w-full px-3 py-2 rounded-lg border-soft bg-card text-fg ring-accent"></textarea>
+              </label>
+
+              <div class="flex items-center justify-between gap-4">
+                <div class="flex items-center gap-2 text-xs text-muted">
+                  <i class="fa-solid fa-lock"></i>
+                  <p>We respect your privacy. Your data is secure.</p>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit <i class="fa-solid fa-paper-plane"></i></button>
+              </div>
+
+              <div id="formErrors" class="hidden text-rose-500 text-sm" role="alert" aria-live="assertive"></div>
+              <div id="formSuccess" class="hidden text-emerald-600 text-sm" role="status" aria-live="polite"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-14 md:py-20">
+      <div class="container">
+        <div class="grid lg:grid-cols-3 gap-6">
+          <div class="glass rounded-2xl p-6 lg:col-span-1" data-aos="fade-right">
+            <h3 class="font-bold text-xl">Contact Us</h3>
+            <p class="text-muted mt-2">We’d love to hear from you. Get in touch for consultations, partnerships, or support.</p>
+            <div class="mt-4 space-y-3">
+              <p class="flex items-center gap-3"><i class="fa-solid fa-phone text-sky-500"></i> <a href="tel:+2349000000000" class="underline decoration-dotted">+2349000000000</a></p>
+              <p class="flex items-center gap-3"><i class="fa-solid fa-envelope text-emerald-500"></i> <a href="mailto:e-heath@mail.com" class="underline decoration-dotted">e-heath@mail.com</a></p>
+              <p class="flex items-center gap-3"><i class="fa-solid fa-location-dot text-rose-500"></i> Lagos, Nigeria</p>
+            </div>
+          </div>
+          <div class="neu rounded-2xl p-2 lg:col-span-2" data-aos="fade-left">
+            <div class="ratio-16-9">
+              <img data-src="/image/doctor with facemask.jpg" alt="Map placeholder showing our service region" class="lazy object-cover w-full h-full" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="pt-12 pb-8 border-t border-soft">
+    <div class="container">
+      <div class="grid md:grid-cols-4 gap-8">
+        <div>
+          <div class="flex items-center gap-3">
+            <span class="inline-flex h-10 w-10 items-center justify-center rounded-xl"
+                  style="background: var(--card); border:1px solid var(--border); box-shadow: inset 4px 4px 16px var(--shadow-hi), inset -8px -8px 16px var(--shadow-lo);">
+              <i class="fa-solid fa-heart-pulse text-lg" style="color: var(--accent)"></i>
+            </span>
+            <span class="font-extrabold text-lg">E-HEALTH-FILE</span>
+          </div>
+          <p class="text-muted mt-3 text-sm">E-HEALTH-FILE, a leading Nigerian health-tech company, partners with hospitals and communities to digitize patient records and provide compassionate home-based care.</p>
+        </div>
+
+        <div>
+          <h4 class="font-bold mb-3">Company</h4>
+          <ul class="grid gap-2 text-sm text-muted">
+            <li><a href="#about" class="hover:underline">About</a></li>
+            <li><a href="#services" class="hover:underline">Services</a></li>
+            <li><a href="#team" class="hover:underline">Our Experts</a></li>
+            <li><a href="#stories" class="hover:underline">Testimonials</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-bold mb-3">Quick Links</h4>
+          <ul class="grid gap-2 text-sm text-muted">
+            <li><a href="#home" class="hover:underline">Home</a></li>
+            <li><a href="#contact" class="hover:underline">Contact</a></li>
+          </ul>
+        </div>
+
+       
+      </div>
+
+      <div class="mt-10 flex items-center justify-between flex-wrap gap-4">
+        <p class="text-xs text-muted">© 2025 E-health. All right Reserved.</p>
+        <div class="flex items-center gap-3 text-muted text-sm">
+          <a href="#" class="hover:text-fg"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" class="hover:text-fg"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#" class="hover:text-fg"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Video Modal -->
+  <div id="videoModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
+    <div class="absolute inset-0 bg-black/70" aria-hidden="true"></div>
+    <div class="glass elev rounded-2xl max-w-3xl w-full p-2 relative">
+      <button id="closeVideo" class="btn btn-ghost absolute -top-4 -right-4" aria-label="Close video">
+        <i class="fa-solid fa-xmark text-xl"></i>
+      </button>
+      <div class="ratio-16-9">
+        <iframe id="videoFrame" class="rounded-xl" src="" title="E-HEALTH-FILE overview"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts: Swiper, AOS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script src="script.js"></script>
+  <script>
+document.getElementById("bookingForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
+  const form = e.target;
+  const formData = new FormData(form);
+
+  const response = await fetch(form.action, {
+    method: "POST",
+    body: formData
+  });
+
+  const result = await response.text();
+  const successDiv = document.getElementById("formSuccess");
+  const errorDiv = document.getElementById("formErrors");
+
+  if (result.trim() === "success") {
+    successDiv.textContent = "✅ Thank you! Your appointment request has been sent.";
+    successDiv.classList.remove("hidden");
+    errorDiv.classList.add("hidden");
+    form.reset();
+  } else {
+    errorDiv.textContent = "❌ Oops! Something went wrong. Please try again.";
+    errorDiv.classList.remove("hidden");
+    successDiv.classList.add("hidden");
+  }
+});
+</script>
+
+</body>
+</html>
